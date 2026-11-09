@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>KameyMall spreadsheet – Produktlinks, Maße und QC prüfen</title>
+  <meta name="description" content="Deutschsprachiger Guide zum KameyMall spreadsheet. Finde Cafans-Kategorien, prüfe Produktlinks, vergleiche Maße und plane die Kosten bis zur Lieferung.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="KameyMall spreadsheet – Produktlinks, Maße und QC prüfen">
+  <meta property="og:description" content="Zehn Cafans-Kategorien und ein praktischer Leitfaden für Produktvarianten, Lagerfotos und Versandkosten.">
+  <style>
+    :root{color-scheme:light;--paper:#fff9f5;--ink:#301820;--wine:#711e3b;--muted:#614853;--rose:#f4e0e6;--line:#cfadb9}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,sans-serif}
+    .wrap{width:min(72rem,calc(100% - 2rem));margin-inline:auto}
+    h1,h2,h3,p,figure,ul,ol,dl,dd{margin:0}
+    h1,h2,h3{line-height:1.1;text-wrap:balance}
+    h2{font-size:clamp(1.65rem,4vw,2.5rem);letter-spacing:-.04em}
+    h3{font-size:1.25rem}
+    a{color:var(--wine);text-underline-offset:.2em}
+    :focus-visible{outline:3px solid #9c2855;outline-offset:4px}
+    .mast{background:var(--wine);color:#fff}
+    .bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem 1rem;flex-wrap:wrap;padding-block:.65rem}
+    .mast a{color:inherit;font-weight:800}
+    .eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .hero{padding:clamp(1.7rem,5vw,3.5rem) 0 1.2rem}
+    .hero .eyebrow,.note .eyebrow{color:var(--wine)}
+    h1{margin:.35rem 0 .75rem;font-size:clamp(2.55rem,7vw,5.75rem);letter-spacing:-.065em}
+    .hero p:last-child{max-width:68ch}
+    .directory{border-block:1px solid var(--line);padding:.8rem 0 1rem}
+    .directory h2{font-size:1rem;letter-spacing:0}
+    .directory ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;padding:0;margin-top:.65rem}
+    .directory a{display:block;padding:.58rem .8rem;border:1px solid var(--line);border-radius:.3rem;font-size:.9rem;font-weight:700;text-decoration:none;overflow-wrap:anywhere}
+    .directory a:hover{background:var(--rose);text-decoration:underline}
+    .gallery{margin-block:1.15rem 2.7rem}
+    .photos{display:grid;grid-template-columns:1.1fr 1fr 1fr;grid-template-rows:repeat(2,minmax(0,1fr));gap:.45rem}
+    .photos div{min-width:0;position:relative;background:#f1eaec;overflow:hidden}
+    .photos .lead{grid-row:span 2}
+    .photos img{display:block;width:100%;height:100%;aspect-ratio:1;object-fit:contain}
+    .photos div:not(.lead) img{aspect-ratio:1.8}
+    .photos span{position:absolute;bottom:0;left:0;padding:.15rem .4rem;background:#fff9f5;color:var(--ink);font-size:.72rem;font-weight:700}
+    figcaption,.quiet{color:var(--muted);font-size:.88rem}
+    figcaption{margin-top:.5rem}
+    .section{padding-block:clamp(1.45rem,4vw,2.75rem);border-top:1px solid var(--line)}
+    .definition{padding:clamp(1rem,3vw,1.65rem);background:var(--rose);border-left:.3rem solid var(--wine);margin-bottom:2rem}
+    .definition p,.section > p{margin-top:.65rem;max-width:72ch}
+    .note{display:grid;grid-template-columns:minmax(10rem,.75fr) minmax(0,1.6fr);gap:.65rem 2rem;padding-block:1rem;border-bottom:1px solid var(--line)}
+    .note:last-child{border-bottom:0;padding-bottom:0}
+    .note h3{margin-top:.25rem}
+    .note p + p{margin-top:.5rem}
+    .log{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:1rem}
+    .log div{background:var(--paper);padding:.8rem}
+    .log dt{font-weight:800;color:var(--wine)}
+    .log dd{margin-top:.25rem}
+    details{border-bottom:1px solid var(--line);padding:.8rem 0}
+    details p{margin:.45rem 0 0;max-width:70ch}
+    summary{font-weight:750;cursor:pointer}
+    .foot{background:var(--rose);padding-block:1.35rem;margin-top:.75rem}
+    .button{display:inline-block;background:var(--wine);color:#fff;border-radius:.3rem;padding:.65rem .95rem;font-weight:750}
+    @media(max-width:44rem){.note{grid-template-columns:1fr}.log{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:34rem){.photos{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}.photos .lead{grid-column:span 2;grid-row:auto}.photos .lead img{aspect-ratio:1.5}.photos div:not(.lead) img{aspect-ratio:1.25}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "KameyMall spreadsheet – Produktlinks, Maße und QC prüfen",
+        "description": "Deutschsprachiger Guide zum KameyMall spreadsheet. Finde Cafans-Kategorien, prüfe Produktlinks, vergleiche Maße und plane die Kosten bis zur Lieferung.",
+        "inLanguage": "de"
+      },
+      {
+        "@type": "FAQPage",
+        "inLanguage": "de",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Was ist ein KameyMall spreadsheet?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Ein KameyMall spreadsheet ist eine Produktliste, die Links, Varianten und weitere Angaben für die Einkaufssuche bündelt. Dieser Ratgeber erklärt, wie du solche Einträge prüfst. Die Kategorien oben führen zu Cafans."}
+          },
+          {
+            "@type": "Question",
+            "name": "Was mache ich, wenn ein Produktlink ins Leere führt?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Suche die Artikelnummer zusammen mit dem Händlernamen. Vergleiche beim neuen Angebot Modell, Farbe und Variante mit deiner Notiz, bevor du den Link ersetzt."}
+          },
+          {
+            "@type": "Question",
+            "name": "Was zeigen QC-Fotos aus dem Lager?",
+            "acceptedAnswer": {"@type": "Answer", "text": "QC-Fotos zeigen sichtbare Merkmale des fotografierten Artikels. Prüfe die gewählte Variante, Nähte und Maße anhand der passenden Ansichten. Die Echtheit einer Marke lässt sich daraus allein nicht ableiten."}
+          },
+          {
+            "@type": "Question",
+            "name": "Wie vergleiche ich die Kosten bis zur Lieferung?",
+            "acceptedAnswer": {"@type": "Answer", "text": "Erfasse Artikelpreis, Inlandsversand, Service, Verpackung und internationalen Versand getrennt. Prüfe mögliche Abgaben für das Lieferland und rechne alle Positionen zum selben Stichtag in deine Vergleichswährung um."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/ofwlm/">
+</head>
+<body>
+  <!--
+    Redaktionelle Recherche zum Suchbegriff KameyMall spreadsheet.
+    Google zeigte eine CAPTCHA-Abfrage. Die Google-Positionen auf Seite 1
+    konnten nicht verifiziert werden. Zehn geprüfte, thematisch relevante
+    Websites aus der ergänzenden Websuche, ohne Rangfolge:
+    kameymall-sheet.com – Produktreferenzen, Varianten und datierte Preisnotizen
+    jadeship.com/spreadsheets – Tabellenindex und plattformübergreifende Suche
+    kameymallspreadsheets.com – Produktfunde und QC-Bildsprache
+    kameymallspreadsheet.net – Kategorien und Vergleich nach Artikelpreis
+    kameymallspreadsheet.org – Herkunft, Artikelnummer und Fotoabgleich
+    chinareptools.com/spreadsheet-search-kameymall – Produktsuche und Linkformate
+    kameymalltable.com – Versandplanung und Volumengewicht
+    kameymallspreadsheet.com – Find-Listen und Einstieg in den Einkaufsablauf
+    kameymall.de – deutschsprachige Fundlisten und QC-Suchintention
+    spreadsheet-kameymall.com – Versand, QC und redaktionelle Produktnotizen
+  -->
+  <header class="mast">
+    <div class="wrap bar">
+      <a href="https://www.cafans.com">www.cafans.com</a>
+      <span class="eyebrow">Einkaufsratgeber · Deutsch</span>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="hero">
+      <p class="eyebrow">Vom ersten Fund zur prüfbaren Auswahl</p>
+      <h1>KameyMall spreadsheet</h1>
+      <p>Du hast einen Artikel in einer Liste gefunden. Passt auch die Variante, und was kostet sie bis zur Haustür? Hier findest du die Cafans-Kategorien und einen kurzen Ablauf, mit dem du aus einem Fund eine nachvollziehbare Kaufentscheidung machst.</p>
+    </div>
+
+    <nav class="directory" aria-labelledby="categories">
+      <h2 id="categories">Kategorien bei Cafans</h2>
+      <ul>
+        <li><a href="https://cafans.com/category-911-Shoes.html">Schuhe</a></li>
+        <li><a href="https://cafans.com/category-912-Hoodies%2FSweaters.html">Hoodies &amp; Pullover</a></li>
+        <li><a href="https://cafans.com/category-913-T-Shirts.html">T-Shirts</a></li>
+        <li><a href="https://cafans.com/category-914-Jackets.html">Jacken</a></li>
+        <li><a href="https://cafans.com/category-915-Pants%2FShorts.html">Hosen &amp; Shorts</a></li>
+        <li><a href="https://cafans.com/category-916-Headwear.html">Kopfbedeckungen</a></li>
+        <li><a href="https://cafans.com/category-917-Sets.html">Sets</a></li>
+        <li><a href="https://cafans.com/category-918-underwear%2Funderpants.html">Unterwäsche</a></li>
+        <li><a href="https://cafans.com/category-919-Jersey.html">Trikots</a></li>
+        <li><a href="https://cafans.com/category-920-Accessories.html">Accessoires</a></li>
+      </ul>
+    </nav>
+
+    <figure class="gallery">
+      <div class="photos">
+        <div class="lead">
+          <img src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1696580116/770509_XKDSJ_1152_001_100_0000_Light-pullover-aus-wolle-mit-ggintarsie.jpg" width="490" height="490" alt="Schwarzer Gucci-Pullover mit GG-Muster und Rundhalsausschnitt" loading="eager" fetchpriority="high">
+          <span>Gucci · Strick</span>
+        </div>
+        <div>
+          <img src="https://www.nike.com.pe/on/demandware.static/-/Sites-catalog-equinox/default/dwb24f5902/images/hi-res/195866187795_1_20240202120000-mrtPeru.jpeg" width="2000" height="2000" alt="Weißer Nike Air Max 90 mit schwarzem Swoosh in der Seitenansicht" loading="lazy" decoding="async">
+          <span>Nike · Sneaker</span>
+        </div>
+        <div>
+          <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-upcycled-denim-varsity-jacket--HUA32WJX1650_PM2_Front%20view.jpg?wid=480&amp;hei=480&amp;fmt=jpeg" width="480" height="480" alt="Blaue Louis Vuitton Denim-Varsity-Jacke mit Monogrammmuster" loading="lazy" decoding="async">
+          <span>Louis Vuitton · Denim</span>
+        </div>
+        <div>
+          <img src="https://cdn.theluxurycloset.com/uploads/opt/products/750x750/luxury-men-dior-new-accessories-p691145-003.jpg" width="750" height="750" alt="Dior Oblique Baseballkappe aus gemustertem Jacquard in der Vorderansicht" loading="lazy" decoding="async">
+          <span>Dior · Cap</span>
+        </div>
+        <div>
+          <img src="https://www.crepslocker.com/cdn/shop/files/hermes-paris-clic-h-white-bracelet-h700001fv31pm-front.webp?v=1716896568&amp;width=480" width="480" height="480" alt="Goldfarbener Hermès Clic H Armreif mit weißer Emaille und H-Verschluss" loading="lazy" decoding="async">
+          <span>Hermès · Schmuck</span>
+        </div>
+      </div>
+      <figcaption>Redaktionelle Bildbeispiele für Schnitt, Material und Details. Die Abbildungen treffen keine Aussage zur Verfügbarkeit bei Cafans.</figcaption>
+    </figure>
+
+    <section class="definition" aria-labelledby="definition">
+      <h2 id="definition">Was steckt in einer Produktliste?</h2>
+      <p>Ein KameyMall spreadsheet bündelt Produktlinks, Varianten und Fundnotizen. Wie nützlich ein Eintrag ist, erkennst du an der Artikelnummer, dem Händler, dem Datum und der eindeutigen Zuordnung zur Produktvariante.</p>
+    </section>
+
+    <section class="section" aria-labelledby="guides">
+      <h2 id="guides">Vier Prüfungen für deine Merkliste</h2>
+      <article class="note">
+        <div><p class="eyebrow">01 · Produktlinks</p><h3>KameyMall Produktlinks prüfen</h3></div>
+        <div>
+          <p>Halte bei Weidian- oder Taobao-Funden die Artikelnummer und den Händlernamen fest. Wenn du einen Produktlink aus der Liste öffnest, prüfe zuerst das Modell und dann die Farbe, Größe und gewählte Ausführung. Ein ähnliches Vorschaubild reicht für die Zuordnung kaum aus.</p>
+          <p>Wenn du einen alten Produktlink ersetzen musst, vergleiche die neue Angebotsseite mit deiner ursprünglichen Notiz. Halte das Prüfdatum fest, damit du alte und aktuelle Angaben auseinanderhalten kannst.</p>
+        </div>
+      </article>
+      <article class="note">
+        <div><p class="eyebrow">02 · Passform</p><h3>Größen und Kleidungsmaße vergleichen</h3></div>
+        <div>
+          <p>Lege einen gut sitzenden Pullover flach hin und miss Brustweite, Rückenlänge und Ärmellänge. Vergleiche dieselben Messpunkte mit der Größentabelle. Achte darauf, ob der Händler die einfache Brustweite oder den gesamten Brustumfang angibt.</p>
+          <p>Für Sneaker misst du beide Füße und vergleichst den längeren Wert mit der Größentabelle des Modells. Bei Kappen zählen Kopfumfang und Verstellbereich. Beim Armreif helfen Innenmaß und Form, besonders wenn du zwischen zwei Größen liegst.</p>
+        </div>
+      </article>
+      <article class="note">
+        <div><p class="eyebrow">03 · Lagerfotos</p><h3>KameyMall QC-Fotos richtig lesen</h3></div>
+        <div>
+          <p>Ordne die Lagerfotos zuerst deiner Bestellung zu. Bei Schuhen helfen Seitenansicht, Sohle und Größenetikett. Bei einer Jacke liefern Nahaufnahmen von Reißverschluss, Bündchen und Nahtverlauf mehr Anhaltspunkte als ein einzelnes Frontfoto.</p>
+          <p>Wenn die Farbe auf Verkäuferfotos und Lagerbildern abweicht, berücksichtige die Beleuchtung. Bitte bei Bedarf um ein Detailfoto mit Maßband oder eine zweite Ansicht, solange du noch reagieren kannst.</p>
+        </div>
+      </article>
+      <article class="note">
+        <div><p class="eyebrow">04 · Versand</p><h3>KameyMall Versandkosten einordnen</h3></div>
+        <div>
+          <p>Trenne den Artikelpreis in CNY vom Inlandsversand zum Lager und vom internationalen Versand. Halte mögliche Service- und Verpackungskosten separat fest. Bei sperrigen Paketen kann das Volumengewicht den Versandpreis beeinflussen.</p>
+          <p>Vergleiche Angebote in derselben Währung und prüfe Versandoptionen und mögliche Abgaben für dein Lieferland. Für Deutschland, Österreich und die Schweiz lohnt sich jeweils eine eigene Kalkulation.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="check">
+      <h2 id="check">So bleibt ein Fund nachvollziehbar</h2>
+      <p>Übernimm diese vier Felder in deine eigene Merkliste. So kannst du später sehen, welche Angaben sich geändert haben oder noch fehlen.</p>
+      <dl class="log">
+        <div><dt>Quelle</dt><dd>Händler, Artikelnummer und Datum der Linkprüfung.</dd></div>
+        <div><dt>Variante</dt><dd>Farbcode, Größe und eigene Vergleichsmaße.</dd></div>
+        <div><dt>Bildprüfung</dt><dd>Geprüfte Ansichten und offene Fragen zur Verarbeitung.</dd></div>
+        <div><dt>Kosten</dt><dd>Artikel, Service, Paket und voraussichtliche Abgaben.</dd></div>
+      </dl>
+    </section>
+
+    <section class="section" aria-labelledby="faq">
+      <h2 id="faq">Häufige Fragen</h2>
+      <details open>
+        <summary>Was ist ein KameyMall spreadsheet?</summary>
+        <p>Ein KameyMall spreadsheet ist eine Produktliste, die Links, Varianten und weitere Angaben für die Einkaufssuche bündelt. Dieser Ratgeber erklärt, wie du solche Einträge prüfst. Die Kategorien oben führen zu Cafans.</p>
+      </details>
+      <details>
+        <summary>Was mache ich, wenn ein Produktlink ins Leere führt?</summary>
+        <p>Suche die Artikelnummer zusammen mit dem Händlernamen. Vergleiche beim neuen Angebot Modell, Farbe und Variante mit deiner Notiz, bevor du den Link ersetzt.</p>
+      </details>
+      <details>
+        <summary>Was zeigen QC-Fotos aus dem Lager?</summary>
+        <p>QC-Fotos zeigen sichtbare Merkmale des fotografierten Artikels. Prüfe die gewählte Variante, Nähte und Maße anhand der passenden Ansichten. Die Echtheit einer Marke lässt sich daraus allein nicht ableiten.</p>
+      </details>
+      <details>
+        <summary>Wie vergleiche ich die Kosten bis zur Lieferung?</summary>
+        <p>Erfasse Artikelpreis, Inlandsversand, Service, Verpackung und internationalen Versand getrennt. Prüfe mögliche Abgaben für das Lieferland und rechne alle Positionen zum selben Stichtag in deine Vergleichswährung um.</p>
+      </details>
+    </section>
+  </main>
+  <footer class="foot">
+    <div class="wrap bar">
+      <p class="quiet">Unabhängiger Einkaufsratgeber zu Produktlisten und Kaufprüfung.</p>
+      <a class="button" href="https://www.cafans.com">Cafans öffnen</a>
+    </div>
+  </footer>
+</body>
+</html>
